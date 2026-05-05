@@ -6,6 +6,8 @@ Deploy a minimal [Strands](https://strandsagents.com) agent on [AWS Bedrock Agen
 
 A minimal but production-shaped reference: one CDK stack, one AgentCore Runtime, one Strands agent, with the IAM policies you actually need (including the easily-missed AWS Marketplace subscription check). Use it as a starting point or read it to understand what an end-to-end AgentCore deployment looks like.
 
+For the long-form walkthrough — the four IAM and billing layers between `cdk deploy` and the first successful invoke — see the companion post: [Deploying AWS Bedrock AgentCore with CDK: a quickstart](https://sph.sh/en/posts/agentcore-cdk-quickstart/).
+
 ## Architecture
 
 ```mermaid
