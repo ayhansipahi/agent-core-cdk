@@ -1,3 +1,10 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/app.ts"
+  "app": "npx ts-node --prefer-ts-exts bin/app.ts",
+  "context": {
+    "agentCore:region": "eu-central-1",
+    "agentCore:modelId": "anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "agentCore:runtimeName": "helloAgent",
+    "agentCore:inferenceProfilePrefix": "eu",
+    "agentCore:description": "Minimal Strands agent on AgentCore Runtime (CDK quickstart) v2"
+  }
 }

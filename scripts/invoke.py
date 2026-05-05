@@ -5,12 +5,13 @@ Usage:
     python scripts/invoke.py <agent-runtime-arn> "<prompt>"
 """
 import json
+import os
 import sys
 import uuid
 
 import boto3
 
-REGION = "eu-central-1"
+REGION = os.environ.get("AWS_REGION", "eu-central-1")
 
 
 def main() -> None:
