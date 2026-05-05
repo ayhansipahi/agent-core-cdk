@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Build, lint, test, synth
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript build
+        run: npm run build
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: Jest
+        run: npm test
+
+      - name: Stub agent dist for synth
+        run: |
+          mkdir -p agent/dist
+          cp agent/main.py agent/dist/main.py
+
+      - name: CDK synth
+        run: npx cdk synth --no-staging

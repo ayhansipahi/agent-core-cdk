@@ -1,3 +1,5 @@
+import * as fs from 'fs';
+import * as path from 'path';
 import * as cdk from 'aws-cdk-lib';
 import { Match, Template } from 'aws-cdk-lib/assertions';
 import { AgentRuntimeStack } from '../lib/agent-runtime-stack';
@@ -9,6 +11,19 @@ const TEST_PROPS = {
   runtimeDescription: 'Test runtime',
   env: { account: '123456789012', region: 'eu-central-1' },
 };
+
+// fromCodeAsset() requires the asset path to exist. Stub a minimal dist so
+// the test is self-contained and can run without `npm run build-agent`.
+const distDir = path.join(__dirname, '..', 'agent', 'dist');
+beforeAll(() => {
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
+  }
+  const stubFile = path.join(distDir, 'main.py');
+  if (!fs.existsSync(stubFile)) {
+    fs.writeFileSync(stubFile, '# test stub\n');
+  }
+});
 
 function synthStack(): Template {
   const app = new cdk.App();
