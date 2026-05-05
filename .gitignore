@@ -1,0 +1,27 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# CDK
+cdk.out/
+bin/*.js
+bin/*.d.ts
+lib/*.js
+lib/*.d.ts
+
+# Agent build artifact
+agent/dist/
+agent/__pycache__/
+*.pyc
+.venv/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+*.swp
